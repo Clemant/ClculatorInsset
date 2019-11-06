@@ -9,6 +9,6 @@ import com.google.gwt.user.client.rpc.RemoteServiceRelativePath;
 @RemoteServiceRelativePath("pourcentage")
 public interface PourcentageService extends RemoteService {
     
-    void pourcentage(double prix, double remise);
+    double pourcentage(String prix, String remise) throws Exception;
     
 }

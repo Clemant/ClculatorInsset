@@ -18,6 +18,8 @@ import static org.junit.Assert.*;
  */
 public class PourcentageServiceImplTest {
     
+    private PourcentageServiceImpl pourcentageService;
+    
     public PourcentageServiceImplTest() {
     }
     
@@ -31,15 +33,38 @@ public class PourcentageServiceImplTest {
     
     @Before
     public void setUp() {
+        
+        pourcentageService = new PourcentageServiceImpl();
     }
     
     @After
     public void tearDown() {
     }
 
-    // TODO add test methods here.
-    // The methods must be annotated with annotation @Test. For example:
-    //
-    // @Test
-    // public void hello() {}
+    
+    @Test
+    public void isPourcentageTest() throws Exception{
+        
+            double resulat = pourcentageService.pourcentage("40","60");
+            assertEquals(null, resulat, 16.0, 0);
+        
+    } 
+    
+    @Test(expected=Exception.class)
+    public void isPourcentageExceptionDiscountTest() throws Exception{
+        
+        pourcentageService.pourcentage("12","0");  
+       
+        
+       
+    }
+    
+    @Test(expected=Exception.class)
+    public void isPourcentageExceptionPriceTest() throws Exception{
+        
+        pourcentageService.pourcentage("-12","10");  
+       
+    }
+   
+    
 }

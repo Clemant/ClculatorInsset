@@ -1,9 +1,0 @@
-<<<<<<< HEAD
-=======
--------------------------------------------------------------------------------
-Test set: org.insset.client.GwtTestcalculatorInsset
--------------------------------------------------------------------------------
-Tests run: 2, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 23.423 sec
-testFieldVerifier(org.insset.client.GwtTestcalculatorInsset)  Time elapsed: 23.165 sec
-testExempleService(org.insset.client.GwtTestcalculatorInsset)  Time elapsed: 0.238 sec
->>>>>>> c0b6a8af02f4c06c653526e24bee2bff06662120

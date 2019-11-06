@@ -65,4 +65,49 @@ public class FieldVerifier {
         //Implement your code
         return true;
     }
+    
+    
+    
+   //Add the code 
+    
+    public static boolean isValidPrice(String price){
+        boolean status = true;
+            try{
+                double initial_price = Double.parseDouble(price);
+                if(initial_price<=0) throw new Exception();
+                //status = true;
+                
+            }catch(Exception e){
+                status = false;
+            }
+        return status;
+    }
+    
+    public static boolean isValideDiscount(String discount){
+        boolean status = true;
+            try{
+                double initial_discount = Double.parseDouble(discount);
+                if(initial_discount<=0) throw new Exception();
+                //status = true;
+                
+            }catch(Exception e){
+                status = false;
+            }
+        return status;
+        
+    }
+    
+    public static boolean isValideTotal(String price_total){
+        boolean status = true;
+            try{
+                double initial_price = Double.parseDouble(price_total);
+                if(initial_price<=0) throw new Exception();
+                //status = true;
+                
+            }catch(Exception e){
+                status = false;
+            }
+        return status;
+    }
+    
 }

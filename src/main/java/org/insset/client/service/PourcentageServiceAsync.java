@@ -14,6 +14,6 @@ import com.google.gwt.user.client.rpc.RemoteService;
  * @author victoire
  */
 public interface PourcentageServiceAsync {
-    void pourcentage( double prix, double remise, AsyncCallback<String> callback);
+    void pourcentage( String prix, String remise, AsyncCallback<String> callback);
     
 }
