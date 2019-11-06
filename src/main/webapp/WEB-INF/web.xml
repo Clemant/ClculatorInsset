@@ -29,6 +29,19 @@
   
   <!-- Add your servlet -->
   
+  
+  <servlet>
+    <servlet-name>PourcentageServlet</servlet-name>
+    <servlet-class>org.insset.server.PourcentageServiceImpl</servlet-class>
+  </servlet>
+
+  <servlet-mapping>
+    <servlet-name>PourcentageServlet</servlet-name>
+    <url-pattern>/calculatorInsset/pourcentage</url-pattern>
+  </servlet-mapping>
+  
+  
+  
   <!-- Default page to serve -->
   <welcome-file-list>
     <welcome-file>calculatorInsset.html</welcome-file>
