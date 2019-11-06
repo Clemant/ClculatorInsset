@@ -29,6 +29,7 @@
   
   <!-- Add your servlet -->
   
+<<<<<<< HEAD
   
   <servlet>
     <servlet-name>PourcentageServlet</servlet-name>
@@ -42,6 +43,8 @@
   
   
   
+=======
+>>>>>>> c0b6a8af02f4c06c653526e24bee2bff06662120
   <!-- Default page to serve -->
   <welcome-file-list>
     <welcome-file>calculatorInsset.html</welcome-file>
