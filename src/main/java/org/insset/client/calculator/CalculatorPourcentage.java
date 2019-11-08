@@ -25,6 +25,8 @@ import com.google.gwt.user.client.ui.ResetButton;
 import com.google.gwt.user.client.ui.SubmitButton;
 import com.google.gwt.user.client.ui.TextBox;
 import org.insset.client.message.dialogbox.DialogBoxInssetPresenter;
+import org.insset.client.service.PourcentageService;
+import org.insset.client.service.PourcentageServiceAsync;
 
 //import org.insset.client.service.PourcentageService;          /*Inutile pour la page pourcentage*/
 //import org.insset.client.service.PourcentageServiceAsync;          /*Inutile pour la page pourcentage*/
@@ -53,7 +55,7 @@ public class CalculatorPourcentage extends Composite{
     
     private static MainUiBinder ourUiBinder = GWT.create(MainUiBinder.class);
      
-   // private final PourcentageServiceAsync service  = GWT.create(PourcentPresenter.class);
+   private final PourcentageServiceAsync service  = GWT.create(PourcentageService.class);
 
     public CalculatorPourcentage(){
         initWidget(ourUiBinder.createAndBindUi(this));
