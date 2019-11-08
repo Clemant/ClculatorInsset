@@ -30,7 +30,7 @@ public class Menu extends Composite {
      * Menu : accueil
      */
     @UiField
-    public MenuItem pourcentage;
+    public MenuItem pourentage;
     /**
      * Menu : accueil
      */
@@ -56,7 +56,7 @@ public class Menu extends Composite {
                 History.newItem("exemple", true);
             }
         });
-        pourcentage.setScheduledCommand(new Scheduler.ScheduledCommand() {
+        pourentage.setScheduledCommand(new Scheduler.ScheduledCommand() {
 
             @Override
             public void execute() {

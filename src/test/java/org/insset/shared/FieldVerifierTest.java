@@ -43,7 +43,7 @@ public class FieldVerifierTest {
     }
     
     
-    @Test
+  /*  @Test
     public void isValidNameTest(){
         boolean status = field.isValidName("Phrase");
         assertTrue("",status);

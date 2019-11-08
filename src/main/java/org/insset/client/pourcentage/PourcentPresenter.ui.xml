@@ -1,0 +1,40 @@
+<ui:UiBinder xmlns:ui='urn:ui:com.google.gwt.uibinder'
+         xmlns:g='urn:import:com.google.gwt.user.client.ui'
+        xmlns:menu="urn:import:org.insset.client.menu">
+
+<g:HTMLPanel>
+    <menu:Menu ui:field="menu"/>
+    <h1>Projet de mise en pratique Scrum</h1>      <!--Affichage des deux premières zones de textes ainsi que des boutons clear et validé-->  
+    <div class="bs-section">
+        <g:FlowPanel>
+            <g:FlowPanel>
+                <g:Label>Quelle est le montant de départ pour calculer la remise ?</g:Label>
+            </g:FlowPanel>
+            <g:FlowPanel>          
+              <g:TextBox ui:field="valeurMontant" text="Entrer une valeur pour montant"/>        <!-- ValR = zone de texte du montant initial qui va subir une remise-->
+            </g:FlowPanel>
+            <g:FlowPanel>
+                <g:Label>Quelle est le pourcentage pour calculer la remise ?</g:Label>
+            </g:FlowPanel>
+            <g:FlowPanel>          
+              <g:TextBox ui:field="valeurRemise" text="Entrer une valeur pour la remise"/>        <!-- ValR = zone de texte du pourcentage qui va s'appliqué au montant initial ValR-->
+              <g:SubmitButton ui:field="boutonCalPourcentage" text="Calulate"/>
+            </g:FlowPanel>
+            <g:FlowPanel>
+                <g:Label ui:field="errorCalPourcentage" ></g:Label>           <!--Message d'erreur pour la première situation-->
+            </g:FlowPanel>
+            <g:FlowPanel >
+            
+                <g:ResetButton ui:field="boutonCleanPourcentage" text="Clean"/>    <!-- Bouton clear de la zone de texte ValR et ValE-->
+            </g:FlowPanel>
+        </g:FlowPanel>
+        
+        <!-- Autre chose -->
+        
+
+      <!--</g:Form>-->
+    </div>
+    <!-- E. Container Right -->
+
+  </g:HTMLPanel>
+</ui:UiBinder>
