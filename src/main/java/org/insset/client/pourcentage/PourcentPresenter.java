@@ -49,7 +49,7 @@ public class PourcentPresenter extends Composite {
     
     private static MainUiBinder ourUiBinder = GWT.create(MainUiBinder.class);
      
-    private final PourcentageServiceAsync service  = GWT.create(PourcentPresenter.class);
+    private final PourcentageServiceAsync service  = GWT.create(PourcentageService.class);
 
     public PourcentPresenter(){
         initWidget(ourUiBinder.createAndBindUi(this));
@@ -67,4 +67,6 @@ public class PourcentPresenter extends Composite {
             }
         });
     }
+    
+    
 }

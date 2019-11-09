@@ -1,6 +1,32 @@
 <ui:UiBinder xmlns:ui='urn:ui:com.google.gwt.uibinder'
          xmlns:g='urn:import:com.google.gwt.user.client.ui'
         xmlns:menu="urn:import:org.insset.client.menu">
+    
+    
+    <ui:style>
+        .title{
+            font-size:18px;
+            margin:45px 0px 20px;
+        }
+        .label,.textbox{
+            font-size:16px;
+            margin:5px 15px;
+        }
+        .textbox{
+            width:50vh;
+        }
+        .button{
+            margin: 5px;
+        }
+
+        .area{
+            display:flex;
+            align-items:center;
+            justify-content:space-between;
+            width:auto;
+        }
+
+    </ui:style>
 
 <g:HTMLPanel>
     <menu:Menu ui:field="menu"/>
@@ -8,29 +34,56 @@
     <div class="bs-section">
         <g:FlowPanel>
             <g:FlowPanel>
-                <g:Label>Quelle est le montant de départ pour calculer la remise ?</g:Label>
+                <g:Label addStyleNames='{style.title}'>Quelle est le montant de départ pour calculer la remise ?</g:Label>
             </g:FlowPanel>
+
+            <g:FlowPanel addStyleNames='{style.area}'>
+                <g:Label addStyleNames='{style.label}'>Prix initial: </g:Label>
+                <g:TextBox addStyleNames='{style.textbox}' ui:field="valeurMontant" text="Saisir un montant"/>
+            </g:FlowPanel>
+            
+            <g:FlowPanel addStyleNames='{style.area}'>
+                <g:Label addStyleNames='{style.label}'>Remise: </g:Label>
+                <g:TextBox addStyleNames='{style.textbox}' ui:field="valeurRemise" text="Saisir la remise"/> 
+            </g:FlowPanel>
+
             <g:FlowPanel>          
-              <g:TextBox ui:field="valeurMontant" text="Entrer une valeur pour montant"/>        <!-- ValR = zone de texte du montant initial qui va subir une remise-->
+              <g:ResetButton addStyleNames='{style.button}' ui:field="boutonCleanPourcentage" text="Clean"/> 
+              <g:SubmitButton addStyleNames='{style.button}' ui:field="boutonCalPourcentage" text="Calulate"/>
             </g:FlowPanel>
-            <g:FlowPanel>
-                <g:Label>Quelle est le pourcentage pour calculer la remise ?</g:Label>
-            </g:FlowPanel>
-            <g:FlowPanel>          
-              <g:TextBox ui:field="valeurRemise" text="Entrer une valeur pour la remise"/>        <!-- ValR = zone de texte du pourcentage qui va s'appliqué au montant initial ValR-->
-              <g:SubmitButton ui:field="boutonCalPourcentage" text="Calulate"/>
-            </g:FlowPanel>
+            
             <g:FlowPanel>
                 <g:Label ui:field="errorCalPourcentage" ></g:Label>           <!--Message d'erreur pour la première situation-->
             </g:FlowPanel>
-            <g:FlowPanel >
-            
-                <g:ResetButton ui:field="boutonCleanPourcentage" text="Clean"/>    <!-- Bouton clear de la zone de texte ValR et ValE-->
-            </g:FlowPanel>
+              
         </g:FlowPanel>
         
         <!-- Autre chose -->
-        
+        <g:FlowPanel>
+            <g:FlowPanel>
+                <g:Label addStyleNames='{style.title}'>Trouver le prix de depart avec la remise?</g:Label>
+            </g:FlowPanel>
+
+            <g:FlowPanel addStyleNames='{style.area}'>
+                <g:Label addStyleNames='{style.label}'>Prix initial: </g:Label>
+                <g:TextBox addStyleNames='{style.textbox}' ui:field="valeurPrice" text="Saisir un montant"/>
+            </g:FlowPanel>
+            
+            <g:FlowPanel addStyleNames='{style.area}'>
+                <g:Label addStyleNames='{style.label}'>Remise: </g:Label>
+                <g:TextBox addStyleNames='{style.textbox}' ui:field="valeurDiscount" text="Saisir la remise"/> 
+            </g:FlowPanel>
+
+            <g:FlowPanel>          
+              <g:ResetButton addStyleNames='{style.button}' ui:field="boutonCleanInversePourcentage" text="Clean"/> 
+              <g:SubmitButton addStyleNames='{style.button}' ui:field="boutonInversePourcentage" text="Calulate"/>
+            </g:FlowPanel>
+            
+            <g:FlowPanel>
+                <g:Label ui:field="errorInversePourcentage" ></g:Label>           <!--Message d'erreur pour la première situation-->
+            </g:FlowPanel>
+              
+        </g:FlowPanel>
 
       <!--</g:Form>-->
     </div>

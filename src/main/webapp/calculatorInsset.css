@@ -19,6 +19,9 @@ h1 {
 .gwt-DialogBox {
   width: 400px;
 }
+.element{
+    margin:10px;
+}
 
 .dialogVPanel {
   margin: 5px;
