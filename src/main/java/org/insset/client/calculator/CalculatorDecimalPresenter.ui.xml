@@ -53,14 +53,10 @@
             <g:FlowPanel>
                 <g:Label ui:field="errorLabelD" ></g:Label>
             </g:FlowPanel>
-            <g:FlowPanel>
-                
+            <g:FlowPanel>    
                 <g:ResetButton ui:field="boutonClearD" text="Clear"/>
             </g:FlowPanel>
         </g:FlowPanel>
-      <!--</g:Form>-->
     </div>
-    <!-- E. Container Right -->
-
   </g:HTMLPanel>
 </ui:UiBinder>

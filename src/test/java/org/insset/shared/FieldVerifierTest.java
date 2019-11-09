@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package org.insset.shared;
 
 import org.junit.After;
@@ -12,25 +7,13 @@ import org.junit.BeforeClass;
 import org.junit.Test;
 import static org.junit.Assert.*;
 
-/**
- *
- * @author victoire
- */
 public class FieldVerifierTest {
     
     
     private FieldVerifier field;
+    private final static String chaine =" ";
     
-    public FieldVerifierTest() {
-    }
-    
-    @BeforeClass
-    public static void setUpClass() {
-    }
-    
-    @AfterClass
-    public static void tearDownClass() {
-    }
+    public FieldVerifierTest() {}
     
     @Before
     public void setUp() {
@@ -39,36 +22,73 @@ public class FieldVerifierTest {
     }
     
     @After
-    public void tearDown() {
-    }
+    public void tearDown() {}
     
     
-  /*  @Test
+    @Test
     public void isValidNameTest(){
         boolean status = field.isValidName("Phrase");
-        assertTrue("",status);
+        assertTrue("The test passed:return true",status);
     }
+    
+    //Vide =false Resneigner =True;
     
     @Test
     public void isValidNameFailTest(){
         boolean status = field.isValidName(null);
-        System.out.println(status);
-        assertFalse("The test passed",status);
+        assertFalse("The test passed:return false",status);
     }
     
-  /*  
-
-   @Test(expected=Exception.class)
-   public void isValidPriceExceptionTest() throws Exception{
-       boolean status =field.isValidPrice("12e");
-       System.out.println();
-       assertTrue("OK",status);
-   }
+    @Test
+    public void isValidNameFailureTest(){
+        boolean status = field.isValidName("");
+        assertFalse("The test passed:return false",status);
+    }
     
-   @Test
-   public void isValidPriceTes(){
-       boolean status = field.isValidPrice("23");
-       assertTrue("OK",status);
-   }
-   */
+    @Test
+    public void isValidDecimalTest(){
+        boolean status = field.isValidDecimal(13);
+        assertTrue("The test passed:return false",status);
+    }
+    
+    @Test
+    public void isValidDecimalFailTest(){
+        boolean status = field.isValidDecimal(0);
+        assertFalse("The test passed:return false",status);
+    }
+    
+    
+    @Test
+    public void isValidRomanTest(){
+        boolean status = field.isValidRoman("0");
+        assertTrue("The test passed:return false",status);
+    }
+    
+    @Test
+    public void isValidRomanFailTest(){
+        boolean status = field.isValidRoman(chaine);
+        assertFalse("The test passed:return "+status,status);
+    }
+    @Test
+    public void isValidRomanFailureTest(){
+        boolean status = field.isValidRoman(null);
+        assertFalse("The test passed:return false",status);
+    }
+    
+    @Test
+    public void isValidPriceTest(){
+        boolean status = field.isValidPrice("12");
+        assertTrue("",status);
+    }
+    
+    @Test
+    public void isValidPriceFailTest(){
+        boolean status = field.isValidPrice(null);
+        assertFalse("",status);
+    }
+    
+    @Test
+    public void isValidDiscountTest(){
+        assertFalse("",field.isValideDiscount(null));
+    }
 }

@@ -9,6 +9,7 @@ import com.google.gwt.user.client.rpc.RemoteServiceRelativePath;
 @RemoteServiceRelativePath("pourcentage")
 public interface PourcentageService extends RemoteService {
     
-    double pourcentage(String prix, String remise) throws Exception;
+    double getFinalPrice(double initialPrice, double discount) throws Exception;
+    double getInitialPrice(double finalPrice, double discount) throws Exception;
     
 }
