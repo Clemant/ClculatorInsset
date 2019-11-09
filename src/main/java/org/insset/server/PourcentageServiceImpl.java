@@ -6,6 +6,7 @@
 package org.insset.server;
 
 import com.google.gwt.user.server.rpc.RemoteServiceServlet;
+
 import org.insset.client.service.PourcentageService;
 
 /**
@@ -18,25 +19,36 @@ public class PourcentageServiceImpl extends RemoteServiceServlet implements
     
 
     @Override
-    public double pourcentage (String prix, String remise) throws Exception  {
-        //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.      
-        double resultat =0.0d;
+    public double pourcentage (String prix, String remise) throws Exception {
+            
+            double resultat = 0.0d;
         
-       
             double prix_initial = Double.parseDouble(prix);
             double remise_initial = Double.parseDouble(remise);
             
-            if(remise_initial<=0 || prix_initial<=0){
-                throw new Exception();
+            if(remise_initial<0 || prix_initial<=0){
+                throw new Exception("Erreur sur le prix ou remise");
             }else{
             resultat = prix_initial-(prix_initial*remise_initial/100);
-            //display ="Le prix avec la remise de "+remise+" est:"+resultat;
-              
+            if(resultat<0){
+                throw new Exception();
+            }
            }
-         
-        
+              
         return resultat;
     }
     
+    public double getInitialPrice(String price,String remise) throws Exception{
+        double resultat = 0;
+        double finalPrice = Double.parseDouble(price);
+        double discount = Double.parseDouble(remise);
+        
+        if(finalPrice<0 || discount<0){
+            throw new Exception("Erreur sur les valeur");
+        }
+        resultat = finalPrice *(100/(100-discount));
+        
+        return resultat;
+    }
     
 }

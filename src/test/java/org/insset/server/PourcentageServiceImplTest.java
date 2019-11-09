@@ -5,6 +5,8 @@
  */
 package org.insset.server;
 
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
@@ -19,6 +21,7 @@ import static org.junit.Assert.*;
 public class PourcentageServiceImplTest {
     
     private PourcentageServiceImpl pourcentageService;
+    private static Logger rootLogger = Logger.getLogger("");
     
     public PourcentageServiceImplTest() {
     }
@@ -45,26 +48,53 @@ public class PourcentageServiceImplTest {
     @Test
     public void isPourcentageTest() throws Exception{
         
-            double resulat = pourcentageService.pourcentage("40","60");
-            assertEquals(null, resulat, 16.0, 0);
-        
+            double resultat = pourcentageService.pourcentage("40","60");
+            assertEquals(null, resultat, 16.0, 0);
+           // rootLogger.log(Level.INFO, "Resultat: "+resultat);
+                           
     } 
     
     @Test(expected=Exception.class)
     public void isPourcentageExceptionDiscountTest() throws Exception{
         
-        pourcentageService.pourcentage("12","0");  
-       
-        
+        pourcentageService.pourcentage("12","1-0");  
+        rootLogger.log(Level.INFO,"Exception must be throw");
        
     }
     
     @Test(expected=Exception.class)
     public void isPourcentageExceptionPriceTest() throws Exception{
-        
         pourcentageService.pourcentage("-12","10");  
-       
+      
     }
    
+    @Test(expected=Exception.class)
+    public void isPourcentageExceptionPriceEmptyTest() throws Exception{
+        pourcentageService.pourcentage(" ","10");   
+    }
     
+    @Test(expected=Exception.class)
+    public void isPourcentageExceptionDiscountEmptyTest() throws Exception{
+        pourcentageService.pourcentage("10"," ");   
+    }
+    
+    @Test(expected=Exception.class)
+    public void isPourcentageErrorTest() throws Exception{
+        pourcentageService.pourcentage("5","-200");
+        
+    }
+    
+    
+//    Create the text for the seconde method
+    
+    @Test(expected=Exception.class)
+    public void getInitalPriceDefaultTest() throws Exception{
+        pourcentageService.getInitialPrice("16", "");
+    }
+    
+    @Test
+    public void getInitialPriceTest() throws Exception{
+        double initalPrice = pourcentageService.getInitialPrice("16", "60");
+        assertEquals("le test est ok",40,initalPrice,0);
+    }
 }
