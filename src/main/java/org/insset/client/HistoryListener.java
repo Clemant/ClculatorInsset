@@ -7,7 +7,7 @@ import com.google.gwt.user.client.ui.RootPanel;
 import java.util.logging.Level;
 import org.insset.client.exemple.ExemplePresenter;
 import org.insset.client.calculator.CalculatorDecimalPresenter;
-import org.insset.client.calculator.CalculatorPourcentage;
+import org.insset.client.pourcentage.CalculatorPourcentage;
 
 import java.util.logging.Logger;
 
