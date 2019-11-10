@@ -155,7 +155,7 @@ public class CalculatorDecimalPresenter extends Composite {
         }
         if (!FieldVerifier.isValidDecimal(value)) {
             errorLabelAToR.addStyleName("serverResponseLabelError");
-            errorLabelAToR.setText("Format incorect. Pas de nombre negatif. Nombre entier compris entre 1 et 3999");
+            errorLabelAToR.setText("Format incorect. Pas de nombre negatif. Nombre entier compris entre 1 et 1999");
             return;
         }
        
