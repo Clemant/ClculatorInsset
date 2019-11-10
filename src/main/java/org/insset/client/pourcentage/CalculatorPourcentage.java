@@ -1,25 +1,13 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package org.insset.client.pourcentage;
-
-/**
- *
- * @author victoire
- * 
- */
 
 import com.google.gwt.core.client.GWT;
 import com.google.gwt.event.dom.client.ClickEvent;
 import com.google.gwt.event.dom.client.ClickHandler;
-import com.google.gwt.event.dom.client.KeyEvent;
-import com.google.gwt.event.dom.client.KeyPressEvent;
-import com.google.gwt.event.dom.client.KeyPressHandler;
+import com.google.gwt.event.dom.client.DoubleClickEvent;
+import com.google.gwt.event.dom.client.DoubleClickHandler;
 import com.google.gwt.uibinder.client.UiBinder;
 import com.google.gwt.uibinder.client.UiField;
-//import com.google.gwt.uibinder.client.UiTemplate;
+import com.google.gwt.user.client.Window;
 import com.google.gwt.user.client.rpc.AsyncCallback;
 import com.google.gwt.user.client.ui.Composite;
 import com.google.gwt.user.client.ui.HTMLPanel;
@@ -29,22 +17,15 @@ import com.google.gwt.user.client.ui.SubmitButton;
 import com.google.gwt.user.client.ui.TextBox;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-
 import org.insset.client.message.dialogbox.DialogBoxInssetPresenter;
 import org.insset.client.service.PourcentageService;
 import org.insset.client.service.PourcentageServiceAsync;
-
-//import org.insset.client.service.PourcentageService;          /*Inutile pour la page pourcentage*/
-//import org.insset.client.service.PourcentageServiceAsync;          /*Inutile pour la page pourcentage*/
 import org.insset.shared.FieldVerifier;
 
 public class CalculatorPourcentage extends Composite {
 
-    interface MainUiBinder extends UiBinder<HTMLPanel, CalculatorPourcentage> {
+    interface MainUiBinder extends UiBinder<HTMLPanel, CalculatorPourcentage> {}
 
-    }
-
-    // Attribute for the first exercice
     @UiField
     public ResetButton boutonCleanPourcentage;
 
@@ -57,7 +38,6 @@ public class CalculatorPourcentage extends Composite {
     @UiField
     public TextBox valeurRemise;
 
-    // Attribute for the second exercice
     @UiField
     public ResetButton boutonCleanInversePourcentage;
 
@@ -69,6 +49,12 @@ public class CalculatorPourcentage extends Composite {
 
     @UiField
     public TextBox valeurDiscount;
+    
+    @UiField
+    public Label errorCalPourcentage;
+    
+    @UiField
+    public Label errorInversePourcentage;
 
     private static MainUiBinder ourUiBinder = GWT.create(MainUiBinder.class);
 
@@ -87,6 +73,7 @@ public class CalculatorPourcentage extends Composite {
             public void onClick(ClickEvent event) {
                 valeurMontant.setText("");
                 valeurRemise.setText("");
+                errorCalPourcentage.setText(" ");
             }
         });
 
@@ -94,9 +81,7 @@ public class CalculatorPourcentage extends Composite {
 
             @Override
             public void onClick(ClickEvent event) {
-                // TODO Auto-generated method stub
-                rootLogger.log(Level.INFO, "Appel de la methode");
-
+                getFinalPrice();
             }
         });
 
@@ -108,22 +93,110 @@ public class CalculatorPourcentage extends Composite {
             }
         });
 
-        valeurRemise.addClickHandler(new ClickHandler() {
+        valeurRemise.addDoubleClickHandler(new DoubleClickHandler() {
+
+            @Override
+            public void onDoubleClick(DoubleClickEvent event) {
+                valeurRemise.setText("");
+            }     
+        });
+        
+        
+        boutonInversePourcentage.addClickHandler(new ClickHandler() {
 
             @Override
             public void onClick(ClickEvent event) {
-                valeurRemise.setText("");
+               getInitialPrice();
+            }
+        });
+        
+        valeurPrice.addClickHandler(new ClickHandler() {
+
+            @Override
+            public void onClick(ClickEvent event) {
+                valeurPrice.setText("");
+                rootLogger.log(Level.INFO,"Vider le champs valeurPrice");
             }
         });
 
+           valeurDiscount.addClickHandler(new ClickHandler() {
+
+            @Override
+            public void onClick(ClickEvent event) {
+                valeurDiscount.setText("");
+            }
+        });
+           
+           boutonCleanInversePourcentage.addClickHandler(new ClickHandler() {
+
+            @Override
+            public void onClick(ClickEvent event) {
+                valeurDiscount.setText("");
+                valeurPrice.setText("");
+                errorInversePourcentage.setText(" ");
+            }
+        });
     }
 
-    // Retour le prix final avec la remise
-    public void getInitialPrice() {
-    }
-
-    // Retour le prix inital sans la remise
     public void getFinalPrice() {
+        double finalPrice = 0;
+        double discount   = 0;
+            
+        try{
+            finalPrice = Double.parseDouble(valeurMontant.getText());
+            discount = Double.parseDouble(valeurRemise.getText());
+            
+        }
+         catch(Exception e){
+             errorCalPourcentage.addStyleName("serverResponseLabelError");
+             errorCalPourcentage.setText("Format incorect. Verfier les Champs!!");
+            return;    
+         }
+        
+            service.getFinalPrice(finalPrice, discount, new AsyncCallback<Double>() {
+            
+            @Override
+            public void onFailure(Throwable caught) {
+               
+                errorCalPourcentage.addStyleName("serverResponseLabelError");
+                errorCalPourcentage.setText("L'un de vos champs est incorrect. Prix superieur a 0 et Remise comprise entre 0 et 100.");
+            }
+            
+            @Override
+            public void onSuccess(Double result) {
+                errorCalPourcentage.setText(" ");
+                new DialogBoxInssetPresenter("Prix avec la reduction: ", "La demande ", String.valueOf(result));
+            }            
+        });
+ }
+    
 
+    public void getInitialPrice() {
+        double finalPrice = 0;
+        double discount   = 0;
+
+        try{
+            finalPrice = Double.parseDouble(valeurPrice.getText());
+            discount = Double.parseDouble(valeurDiscount.getText());
+            }
+        catch(Exception e){
+             errorInversePourcentage.addStyleName("serverResponseLabelError");
+             errorInversePourcentage.setText("Format incorect. Verfier les Champs!!");
+            return;    
+         }
+            
+            service.getInitialPrice(finalPrice, discount, new AsyncCallback<Double>() {
+            
+            @Override
+            public void onFailure(Throwable caught) {
+                errorInversePourcentage.setText("Erreur sur l'un de vos champs. Prix superieur a 0 et Remise comprise entre 0 et 100.");
+            }
+            
+            @Override
+            public void onSuccess(Double result) {
+                errorInversePourcentage.setText(" ");
+                new DialogBoxInssetPresenter("Prix initial avant reduction: ", "La demande ", String.valueOf(result));
+            }          
+        });
     }
 }

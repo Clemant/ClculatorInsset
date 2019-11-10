@@ -30,9 +30,7 @@ public class FieldVerifierTest {
         boolean status = field.isValidName("Phrase");
         assertTrue("The test passed:return true",status);
     }
-    
-    //Vide =false Resneigner =True;
-    
+ 
     @Test
     public void isValidNameFailTest(){
         boolean status = field.isValidName(null);
@@ -64,31 +62,49 @@ public class FieldVerifierTest {
         assertTrue("The test passed:return false",status);
     }
     
-    @Test
-    public void isValidRomanFailTest(){
-        boolean status = field.isValidRoman(chaine);
-        assertFalse("The test passed:return "+status,status);
-    }
+   
     @Test
     public void isValidRomanFailureTest(){
         boolean status = field.isValidRoman(null);
         assertFalse("The test passed:return false",status);
+        status = field.isValidRoman(chaine);
+        assertFalse("The test passed:return "+status,status);
+    }
+    
+//    @Test
+//    public void isValidPriceTest(){
+//        boolean status = field.isValidPrice("12");
+//        assertTrue("",status);
+//    }
+//    
+//    @Test
+//    public void isValidPriceFailTest(){
+//        boolean status = field.isValidPrice(null);
+//        assertFalse("",status);
+//        //assertFalse("",field.isValidPrice(chaine));
+//        assertFalse("",field.isValidPrice(""));
+//    }
+//    
+//    @Test
+//    public void isValidDiscountTest(){
+//        assertTrue("",field.isValideDiscount("12"));   
+//    }
+//    
+//    @Test
+//    public void isValidDiscountFailTest(){
+//        assertFalse("",field.isValideDiscount(null));
+//        assertFalse("",field.isValideDiscount(""));
+//    } 
+//    
+    @Test
+    public void isValidDateTest(){
+        assertTrue("",field.isValidDate("XX"));
     }
     
     @Test
-    public void isValidPriceTest(){
-        boolean status = field.isValidPrice("12");
-        assertTrue("",status);
-    }
-    
-    @Test
-    public void isValidPriceFailTest(){
-        boolean status = field.isValidPrice(null);
-        assertFalse("",status);
-    }
-    
-    @Test
-    public void isValidDiscountTest(){
-        assertFalse("",field.isValideDiscount(null));
+    public void isValidDateFailTest(){
+        assertFalse("",field.isValidDate(null));
+        assertFalse("",field.isValidDate(chaine));
+        assertFalse("",field.isValidDate(""));
     }
 }

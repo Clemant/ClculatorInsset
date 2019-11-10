@@ -3,12 +3,10 @@ package org.insset.server;
 import com.google.gwt.user.server.rpc.RemoteServiceServlet;
 import org.insset.client.service.ExempleService;
 
-/**
- * The server side implementation of the RPC service.
- */
 @SuppressWarnings("serial")
-public class ExempleServiceImpl extends RemoteServiceServlet implements
-        ExempleService {
+public class ExempleServiceImpl extends RemoteServiceServlet implements ExempleService {
+    
+    public ExempleServiceImpl(){}
 
     public String inverserChaine(String input) throws IllegalArgumentException {
         int longueur = input.length();
@@ -20,5 +18,4 @@ public class ExempleServiceImpl extends RemoteServiceServlet implements
         }
         return new String(envers);
     }
-
 }

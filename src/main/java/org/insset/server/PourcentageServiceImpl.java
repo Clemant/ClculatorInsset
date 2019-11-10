@@ -5,9 +5,10 @@ import org.insset.client.service.PourcentageService;
 
 public class PourcentageServiceImpl extends RemoteServiceServlet implements PourcentageService {
 
+    @Override
     public double getFinalPrice (double prix_initial, double remise_initial) throws Exception {
             
-            double resultat = 0.0d;
+            double resultat = 0;
            
             if(remise_initial<0 || prix_initial<=0){
                 throw new Exception("Erreur sur le prix ou remise");
@@ -20,6 +21,7 @@ public class PourcentageServiceImpl extends RemoteServiceServlet implements Pour
         return resultat;
     }
     
+    @Override
     public double getInitialPrice(double finalPrice,double discount) throws Exception{
         double resultat = 0;
       
@@ -27,6 +29,9 @@ public class PourcentageServiceImpl extends RemoteServiceServlet implements Pour
             throw new Exception("Erreur sur les valeur");
         }
         resultat = finalPrice *(100/(100-discount));
+        if(resultat<0){
+                throw new Exception();
+            }
         return resultat;
     }
 }

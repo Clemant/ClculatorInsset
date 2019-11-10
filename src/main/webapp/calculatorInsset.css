@@ -38,6 +38,8 @@ h1 {
 
 .serverResponseLabelError {
   color: red;
+  font-size: 15px;
+  visible:visible;
 }
 
 /** Set ids using widget.getElement().setId("idOfElement") */

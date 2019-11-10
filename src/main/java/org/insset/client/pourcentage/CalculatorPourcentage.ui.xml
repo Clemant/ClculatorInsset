@@ -1,8 +1,7 @@
 <ui:UiBinder xmlns:ui='urn:ui:com.google.gwt.uibinder'
          xmlns:g='urn:import:com.google.gwt.user.client.ui'
         xmlns:menu="urn:import:org.insset.client.menu">
-    
-    
+       
     <ui:style>
         .title{
             font-size:18px;
@@ -13,7 +12,7 @@
             margin:5px 15px;
         }
         .textbox{
-            width:50vh;
+            width:40vh;
         }
         .button{
             margin: 5px;
@@ -25,7 +24,6 @@
             justify-content:space-between;
             width:auto;
         }
-
     </ui:style>
 
 <g:HTMLPanel>
@@ -53,7 +51,7 @@
             </g:FlowPanel>
             
             <g:FlowPanel>
-                <g:Label ui:field="errorCalPourcentage" ></g:Label>           <!--Message d'erreur pour la première situation-->
+                <g:Label ui:field="errorCalPourcentage" ></g:Label>           
             </g:FlowPanel>
               
         </g:FlowPanel>
@@ -80,14 +78,11 @@
             </g:FlowPanel>
             
             <g:FlowPanel>
-                <g:Label ui:field="errorInversePourcentage" ></g:Label>           <!--Message d'erreur pour la première situation-->
+                <g:Label ui:field="errorInversePourcentage" ></g:Label>           
             </g:FlowPanel>
               
         </g:FlowPanel>
 
-      <!--</g:Form>-->
     </div>
-    <!-- E. Container Right -->
-
   </g:HTMLPanel>
 </ui:UiBinder>

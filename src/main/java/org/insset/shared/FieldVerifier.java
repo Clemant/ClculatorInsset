@@ -2,6 +2,7 @@ package org.insset.shared;
 
 public class FieldVerifier {
 
+    public FieldVerifier(){}
    
     public static boolean isValidName(String name) {
         if ((name == null) || (name.isEmpty()) || name == " ") {
@@ -11,7 +12,7 @@ public class FieldVerifier {
     }
 
     public static boolean isValidDecimal(Integer nbr) {
-        //Implement your code
+        
         if ((nbr == null) || (nbr<=0)) {
             return false;
         }
@@ -26,26 +27,25 @@ public class FieldVerifier {
     }
 
     public static boolean isValidDate(String date) {
-        //Implement your code
+       if ((date == null) || (date.isEmpty()) || (date ==" ") ) {
+            return false;
+        }
         return true;
     }
     
-      
-   //Add the code 
-    
-    public static boolean isValidPrice(String price){
-        boolean status = true;
-            if(price ==null || price.isEmpty() ){
-                status=!status ;
-            }
-        return status;
-    }
-    
-    public static boolean isValideDiscount(String discount){
-        boolean status = true;
-        if(discount == null || discount.isEmpty()){
-            status = !status;
-        }    
-        return status;   
-    }
+// public static boolean isValidPrice(String price){
+//        boolean status = true;
+//            if(price ==null || price.isEmpty() ){
+//                status=!status ;
+//            }
+//        return status;
+//    }
+//    
+//    public static boolean isValideDiscount(String discount){
+//        boolean status = true;
+//        if(discount == null || discount.isEmpty()){
+//            status = !status;
+//        }    
+//        return status;   
+//    }
 }
