@@ -7,7 +7,6 @@ import com.google.gwt.event.dom.client.DoubleClickEvent;
 import com.google.gwt.event.dom.client.DoubleClickHandler;
 import com.google.gwt.uibinder.client.UiBinder;
 import com.google.gwt.uibinder.client.UiField;
-import com.google.gwt.user.client.Window;
 import com.google.gwt.user.client.rpc.AsyncCallback;
 import com.google.gwt.user.client.ui.Composite;
 import com.google.gwt.user.client.ui.HTMLPanel;
@@ -15,12 +14,10 @@ import com.google.gwt.user.client.ui.Label;
 import com.google.gwt.user.client.ui.ResetButton;
 import com.google.gwt.user.client.ui.SubmitButton;
 import com.google.gwt.user.client.ui.TextBox;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import org.insset.client.message.dialogbox.DialogBoxInssetPresenter;
 import org.insset.client.service.PourcentageService;
 import org.insset.client.service.PourcentageServiceAsync;
-import org.insset.shared.FieldVerifier;
+
 
 public class CalculatorPourcentage extends Composite {
 
@@ -59,8 +56,6 @@ public class CalculatorPourcentage extends Composite {
     private static MainUiBinder ourUiBinder = GWT.create(MainUiBinder.class);
 
     private final PourcentageServiceAsync service = GWT.create(PourcentageService.class);
-
-    private static Logger rootLogger = Logger.getLogger("");
 
     public CalculatorPourcentage() {
         initWidget(ourUiBinder.createAndBindUi(this));
@@ -115,7 +110,6 @@ public class CalculatorPourcentage extends Composite {
             @Override
             public void onClick(ClickEvent event) {
                 valeurPrice.setText("");
-                rootLogger.log(Level.INFO,"Vider le champs valeurPrice");
             }
         });
 
@@ -165,7 +159,7 @@ public class CalculatorPourcentage extends Composite {
             @Override
             public void onSuccess(Double result) {
                 errorCalPourcentage.setText(" ");
-                new DialogBoxInssetPresenter("Prix avec la reduction: ", "La demande ", String.valueOf(result));
+                new DialogBoxInssetPresenter("Prix avec la reduction", "Prix final", String.valueOf(result));
             }            
         });
  }
@@ -189,13 +183,14 @@ public class CalculatorPourcentage extends Composite {
             
             @Override
             public void onFailure(Throwable caught) {
+                errorInversePourcentage.addStyleName("serverResponseLabelError");
                 errorInversePourcentage.setText("Erreur sur l'un de vos champs. Prix superieur a 0 et Remise comprise entre 0 et 100.");
             }
             
             @Override
             public void onSuccess(Double result) {
                 errorInversePourcentage.setText(" ");
-                new DialogBoxInssetPresenter("Prix initial avant reduction: ", "La demande ", String.valueOf(result));
+                new DialogBoxInssetPresenter("Prix initial avant reduction","Prix initial",String.valueOf(result));
             }          
         });
     }

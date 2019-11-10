@@ -9,7 +9,7 @@ import org.insset.client.service.RomanConverterService;
  *
  * @author user
  */
-//@SuppressWarnings("serial")
+@SuppressWarnings("serial")
 public class RomanConverterServiceImpl extends RemoteServiceServlet implements RomanConverterService {
 
     private static final int []     nbre   = {1000,900,500,400,100,90,50,40,10,9,5,4,1};
@@ -30,26 +30,23 @@ public class RomanConverterServiceImpl extends RemoteServiceServlet implements R
     }
 
     @Override
-    public String convertArabeToRoman(Integer nbr) throws IllegalArgumentException {
-        return new String("Merde");
+    public String convertArabeToRomans(Integer nbr) throws IllegalArgumentException {
+       
+        String roman = "";
+       
+        int taille = nbre.length;
+        while(nbr>0){
+          for(int i=0;i<taille;i++){
+              if(nbr>=nbre[i]){
+                  int count = nbr/nbre[i];
+                  for(int j=0;j<count;j++){
+                      roman=roman+valeur[i];
+                  }
+                  nbr=nbr-(count*nbre[i]);
+              }
+            }
+          nbr=0;
+          }
+        return new String(roman);
     }
-//        //Implement your code
-//        rootLogger.log(Level.INFO, "Lancement de la methode");
-//        String roman = "";
-//        int taille = nbre.length;
-//        while(nbr>0){
-//            for(int i=0;i<taille;i++){
-//                if(nbr>=nbre[i]){
-//                    int count = nbr/nbre[i];
-//                    for(int j=0;j<count;j++){
-//                        roman=roman+valeur[i];                  
-//                    }
-//                    nbr=nbr-(count*nbre[i]);
-//                }
-//            }
-//        }
-//        rootLogger.log(Level.INFO, roman);
-//        return new String(roman);
-//    }
-
 }

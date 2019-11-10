@@ -17,22 +17,10 @@ public class PourcentageServiceImplTest {
     
     public PourcentageServiceImplTest() {
     }
-    
-    @BeforeClass
-    public static void setUpClass() {
-    }
-    
-    @AfterClass
-    public static void tearDownClass() {
-    }
-    
+        
     @Before
     public void setUp() {       
         pourcentageService = new PourcentageServiceImpl();
-    }
-    
-    @After
-    public void tearDown() {
     }
 
     @Test
@@ -55,8 +43,7 @@ public class PourcentageServiceImplTest {
     public void isPourcentageErrorTest() throws Exception{
         pourcentageService.getFinalPrice(5,200);    
     }
-    
-    
+      
     @Test
     public void getInitialPriceTest() throws Exception{
         double initalPrice = pourcentageService.getInitialPrice(16, 60);

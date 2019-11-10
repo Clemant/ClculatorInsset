@@ -37,7 +37,7 @@
 
             <g:FlowPanel addStyleNames='{style.area}'>
                 <g:Label addStyleNames='{style.label}'>Prix initial: </g:Label>
-                <g:TextBox addStyleNames='{style.textbox}' ui:field="valeurMontant" text="Saisir un montant"/>
+                <g:TextBox addStyleNames='{style.textbox}' ui:field="valeurMontant" text="Saisir un montant" />
             </g:FlowPanel>
             
             <g:FlowPanel addStyleNames='{style.area}'>

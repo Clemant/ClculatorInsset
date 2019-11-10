@@ -33,19 +33,4 @@ public class FieldVerifier {
         return true;
     }
     
-// public static boolean isValidPrice(String price){
-//        boolean status = true;
-//            if(price ==null || price.isEmpty() ){
-//                status=!status ;
-//            }
-//        return status;
-//    }
-//    
-//    public static boolean isValideDiscount(String discount){
-//        boolean status = true;
-//        if(discount == null || discount.isEmpty()){
-//            status = !status;
-//        }    
-//        return status;   
-//    }
 }

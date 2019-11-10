@@ -13,8 +13,6 @@ import com.google.gwt.user.client.ui.Label;
 import com.google.gwt.user.client.ui.ResetButton;
 import com.google.gwt.user.client.ui.SubmitButton;
 import com.google.gwt.user.client.ui.TextBox;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import org.insset.client.message.dialogbox.DialogBoxInssetPresenter;
 import org.insset.client.service.RomanConverterService;
 import org.insset.client.service.RomanConverterServiceAsync;
@@ -52,8 +50,7 @@ public class CalculatorDecimalPresenter extends Composite {
     public Label errorLabelD;
 
     interface MainUiBinder extends UiBinder<HTMLPanel, CalculatorDecimalPresenter> {}
-    private static Logger rootLogger = Logger.getLogger("");
-
+   
     private static MainUiBinder ourUiBinder = GWT.create(MainUiBinder.class);
     /**
      * Create a remote service proxy to talk to the server-side Greeting
@@ -72,6 +69,7 @@ public class CalculatorDecimalPresenter extends Composite {
     /**
      * Init des handler
      */
+    
     private void initHandler() {
         boutonClearR.addClickHandler(new ClickHandler() {
             @Override
@@ -146,7 +144,7 @@ public class CalculatorDecimalPresenter extends Composite {
      * call server
      */
     private void convertArabeToRoman() {
-        rootLogger.log(Level.INFO,"Element test");
+       
         Integer value = null;
         try {
             value = Integer.parseInt(valA.getText());
@@ -157,14 +155,14 @@ public class CalculatorDecimalPresenter extends Composite {
         }
         if (!FieldVerifier.isValidDecimal(value)) {
             errorLabelAToR.addStyleName("serverResponseLabelError");
-            errorLabelAToR.setText("Format incorect");
+            errorLabelAToR.setText("Format incorect. Pas de nombre negatif et pas 0");
             return;
         }
-        rootLogger.log(Level.INFO,"Fin Element test et debut");
-        service.convertArabeToRoman(Integer.parseInt(valA.getText()), new AsyncCallback<String>() {
+       
+        service.convertArabeToRomans(value, new AsyncCallback<String>() {
             public void onFailure(Throwable caught) {
-                // Show the RPC error message to the user
-                rootLogger.log(Level.INFO,"Element test: "+caught.getMessage());
+                errorLabelAToR.setText("Erreur verifier la zone de texte");
+                
             }
 
             public void onSuccess(String result) {
@@ -172,7 +170,6 @@ public class CalculatorDecimalPresenter extends Composite {
                 new DialogBoxInssetPresenter("Convertion Arabe to Roman", valA.getText(), result);
             }
         });
-        rootLogger.log(Level.INFO," Complet Element test");
     }
 
     /**

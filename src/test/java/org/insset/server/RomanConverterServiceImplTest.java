@@ -7,31 +7,28 @@ import static org.junit.Assert.*;
 
 public class RomanConverterServiceImplTest {
     
-    public RomanConverterServiceImplTest() {
-    }
+    public RomanConverterServiceImplTest() {}
     
+    private static RomanConverterServiceImpl romanConvertServiceImpl;
     
     @Before
     public void setUp() {
+         romanConvertServiceImpl = new RomanConverterServiceImpl();
     }
     
     @After
-    public void tearDown() {
-    }
+    public void tearDown() { }
 
     @Test
-    public void testConvertDateYears() {
-        
-    }
+    public void testConvertDateYears() {}
 
     @Test
-    public void testConvertRomanToArabe() {
-        
-    }
+    public void testConvertRomanToArabe() {}
 
     @Test
     public void testConvertArabeToRoman() {
-       
+        String resultat = romanConvertServiceImpl.convertArabeToRomans(12);
+        assertEquals(resultat, "XII");       
     }
     
 }
