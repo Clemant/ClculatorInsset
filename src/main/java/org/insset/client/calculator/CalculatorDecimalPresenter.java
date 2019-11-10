@@ -5,6 +5,7 @@ import com.google.gwt.event.dom.client.ClickEvent;
 import com.google.gwt.event.dom.client.ClickHandler;
 import com.google.gwt.uibinder.client.UiBinder;
 import com.google.gwt.uibinder.client.UiField;
+import com.google.gwt.user.client.Window;
 import com.google.gwt.user.client.rpc.AsyncCallback;
 import com.google.gwt.user.client.ui.Composite;
 import com.google.gwt.user.client.ui.HTMLPanel;
@@ -12,16 +13,13 @@ import com.google.gwt.user.client.ui.Label;
 import com.google.gwt.user.client.ui.ResetButton;
 import com.google.gwt.user.client.ui.SubmitButton;
 import com.google.gwt.user.client.ui.TextBox;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import org.insset.client.message.dialogbox.DialogBoxInssetPresenter;
 import org.insset.client.service.RomanConverterService;
 import org.insset.client.service.RomanConverterServiceAsync;
 import org.insset.shared.FieldVerifier;
 
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 /**
  *
  * @author talend
@@ -53,8 +51,8 @@ public class CalculatorDecimalPresenter extends Composite {
     @UiField
     public Label errorLabelD;
 
-    interface MainUiBinder extends UiBinder<HTMLPanel, CalculatorDecimalPresenter> {
-    }
+    interface MainUiBinder extends UiBinder<HTMLPanel, CalculatorDecimalPresenter> {}
+    private static Logger rootLogger = Logger.getLogger("");
 
     private static MainUiBinder ourUiBinder = GWT.create(MainUiBinder.class);
     /**
@@ -123,28 +121,32 @@ public class CalculatorDecimalPresenter extends Composite {
      * call server
      */
     private void convertRomanToArabe() {
+        
         if (!FieldVerifier.isValidRoman(valR.getText())) {
             errorLabelRToA.addStyleName("serverResponseLabelError");
             errorLabelRToA.setText("Format incorect");
             return;
         }
+        
         service.convertRomanToArabe(valR.getText(), new AsyncCallback<Integer>() {
             public void onFailure(Throwable caught) {
                 // Show the RPC error message to the user
-//                Window.alert(SERVER_ERROR);
+               Window.alert(caught.getMessage());
             }
 
             public void onSuccess(Integer result) {
                 errorLabelRToA.setText(" ");
-                new DialogBoxInssetPresenter("Convertion Roman to arabe", valR.getText(), String.valueOf(result));
+                new DialogBoxInssetPresenter("Convertion Roman to arabe", valR.getText(), "hello");
             }
         });
+        
     }
 
     /**
      * call server
      */
     private void convertArabeToRoman() {
+        rootLogger.log(Level.INFO,"Element test");
         Integer value = null;
         try {
             value = Integer.parseInt(valA.getText());
@@ -158,9 +160,11 @@ public class CalculatorDecimalPresenter extends Composite {
             errorLabelAToR.setText("Format incorect");
             return;
         }
+        rootLogger.log(Level.INFO,"Fin Element test et debut");
         service.convertArabeToRoman(Integer.parseInt(valA.getText()), new AsyncCallback<String>() {
             public void onFailure(Throwable caught) {
                 // Show the RPC error message to the user
+                rootLogger.log(Level.INFO,"Element test: "+caught.getMessage());
             }
 
             public void onSuccess(String result) {
@@ -168,6 +172,7 @@ public class CalculatorDecimalPresenter extends Composite {
                 new DialogBoxInssetPresenter("Convertion Arabe to Roman", valA.getText(), result);
             }
         });
+        rootLogger.log(Level.INFO," Complet Element test");
     }
 
     /**
