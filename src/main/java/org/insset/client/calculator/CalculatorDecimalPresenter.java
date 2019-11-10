@@ -122,7 +122,7 @@ public class CalculatorDecimalPresenter extends Composite {
         
         if (!FieldVerifier.isValidRoman(valR.getText())) {
             errorLabelRToA.addStyleName("serverResponseLabelError");
-            errorLabelRToA.setText("Format incorect");
+            errorLabelRToA.setText("Format incorect.");
             return;
         }
         
@@ -155,7 +155,7 @@ public class CalculatorDecimalPresenter extends Composite {
         }
         if (!FieldVerifier.isValidDecimal(value)) {
             errorLabelAToR.addStyleName("serverResponseLabelError");
-            errorLabelAToR.setText("Format incorect. Pas de nombre negatif et pas 0");
+            errorLabelAToR.setText("Format incorect. Pas de nombre negatif. Nombre entier compris entre 1 et 3999");
             return;
         }
        

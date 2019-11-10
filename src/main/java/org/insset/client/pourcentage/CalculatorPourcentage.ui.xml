@@ -32,7 +32,7 @@
     <div class="bs-section">
         <g:FlowPanel>
             <g:FlowPanel>
-                <g:Label addStyleNames='{style.title}'>Quelle est le montant de départ pour calculer la remise ?</g:Label>
+                <g:Label addStyleNames='{style.title}'>Quelle est le montant final avec la remise ?</g:Label>
             </g:FlowPanel>
 
             <g:FlowPanel addStyleNames='{style.area}'>

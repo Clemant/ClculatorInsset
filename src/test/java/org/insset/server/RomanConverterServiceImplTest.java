@@ -30,5 +30,4 @@ public class RomanConverterServiceImplTest {
         String resultat = romanConvertServiceImpl.convertArabeToRomans(12);
         assertEquals(resultat, "XII");       
     }
-    
 }
