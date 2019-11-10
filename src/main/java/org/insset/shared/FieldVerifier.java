@@ -13,7 +13,7 @@ public class FieldVerifier {
 
     public static boolean isValidDecimal(Integer nbr) {
         
-        if ((nbr == null) || (nbr<=0) || (nbr<2000)) {
+        if ((nbr == null) || (nbr<=0) || (nbr>2000)) {
             return false;
         }
         return true;
